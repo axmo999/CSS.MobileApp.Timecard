@@ -70,5 +70,11 @@ namespace CSS.MobileApp.Timecard.DAO
                 return records;
             }
         }
+
+        public bool WriteCsv(SmbFile smbFile, List<Entity.CsvTimeRecord.Record> records)
+        {
+
+            return true;
+        }
     }
 }
