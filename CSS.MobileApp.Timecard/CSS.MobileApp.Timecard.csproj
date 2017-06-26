@@ -91,6 +91,12 @@
   <ItemGroup>
     <Folder Include="Utility\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CSS.TimeCard.Library\CSS.TimeCard.Library\CSS.TimeCard.Library.csproj">
+      <Project>{BDEB148D-896F-4E92-977D-954436AAFD05}</Project>
+      <Name>CSS.TimeCard.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
