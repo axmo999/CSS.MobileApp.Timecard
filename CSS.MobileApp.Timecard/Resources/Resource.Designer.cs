@@ -60,8 +60,11 @@ namespace CSS.MobileApp.Timecard
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050002
-			public const int calendarView1 = 2131034114;
+			// aapt resource value: 0x7f050007
+			public const int buttonStamp = 2131034119;
+			
+			// aapt resource value: 0x7f050003
+			public const int calendarView1 = 2131034115;
 			
 			// aapt resource value: 0x7f050000
 			public const int linearLayout1 = 2131034112;
@@ -69,8 +72,17 @@ namespace CSS.MobileApp.Timecard
 			// aapt resource value: 0x7f050001
 			public const int linearLayout2 = 2131034113;
 			
-			// aapt resource value: 0x7f050003
-			public const int textClock1 = 2131034115;
+			// aapt resource value: 0x7f050004
+			public const int linearLayout3 = 2131034116;
+			
+			// aapt resource value: 0x7f050005
+			public const int spinnerUserLists = 2131034117;
+			
+			// aapt resource value: 0x7f050002
+			public const int textClock1 = 2131034114;
+			
+			// aapt resource value: 0x7f050006
+			public const int toggleAttendance = 2131034118;
 			
 			static Id()
 			{

@@ -1,24 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/linearLayout1">
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="horizontal"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1">
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/linearLayout2">
-        <CalendarView
-            android:id="@+id/calendarView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        p1:orientation="vertical"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_height="match_parent"
+        p1:layout_width="0dp"
+        p1:id="@+id/linearLayout2"
+        p1:layout_weight="1">
         <TextClock
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textClock1"
-            android:textSize="60px"
-            android:textStyle="bold"
-            android:textAlignment="center" />
+            p1:layout_width="match_parent"
+            p1:layout_height="0dp"
+            p1:layout_weight="5"
+            p1:id="@+id/textClock1"
+            p1:textStyle="bold"
+            p1:textSize="100dp"
+            p1:gravity="center" />
+        <CalendarView
+            p1:layout_width="match_parent"
+            p1:layout_height="0dp"
+            p1:layout_weight="7"
+            p1:id="@+id/calendarView1" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="vertical"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_height="match_parent"
+        p1:layout_width="0dp"
+        p1:id="@+id/linearLayout3"
+        p1:layout_weight="1">
+        <Spinner
+            p1:layout_width="match_parent"
+            p1:layout_height="0dp"
+            p1:layout_weight="3"
+            p1:id="@+id/spinnerUserLists" />
+        <ToggleButton
+            p1:layout_width="match_parent"
+            p1:layout_height="0dp"
+            p1:layout_weight="3"
+            p1:id="@+id/toggleAttendance"
+            p1:textSize="60dp"
+            p1:textOff="退勤"
+            p1:textOn="出勤" />
+        <Button
+            p1:text="打刻"
+            p1:layout_width="match_parent"
+            p1:layout_height="0dp"
+            p1:layout_weight="6"
+            p1:id="@+id/buttonStamp"
+            p1:textSize="100dp" />
     </LinearLayout>
 </LinearLayout>
