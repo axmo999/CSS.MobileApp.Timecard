@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSS.MobileApp.Timecard", "CSS.MobileApp.Timecard\CSS.MobileApp.Timecard.csproj", "{5A337B4C-213A-4AA5-BD93-7A92A1A0A4E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSS.Library.Timecard", "..\CSS.Library.Timecard\CSS.Library.Timecard\CSS.Library.Timecard.csproj", "{7A992F95-B96F-4F3A-95C5-38D96B20C884}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSS.Library.Timecard", "..\CSS.Library.Timecard\CSS.Library.Timecard\CSS.Library.Timecard.csproj", "{6A0E6DD6-2341-4D1A-8F22-6F01A4BAE486}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{5A337B4C-213A-4AA5-BD93-7A92A1A0A4E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A337B4C-213A-4AA5-BD93-7A92A1A0A4E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A337B4C-213A-4AA5-BD93-7A92A1A0A4E8}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{7A992F95-B96F-4F3A-95C5-38D96B20C884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A992F95-B96F-4F3A-95C5-38D96B20C884}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A992F95-B96F-4F3A-95C5-38D96B20C884}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A992F95-B96F-4F3A-95C5-38D96B20C884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0E6DD6-2341-4D1A-8F22-6F01A4BAE486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0E6DD6-2341-4D1A-8F22-6F01A4BAE486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0E6DD6-2341-4D1A-8F22-6F01A4BAE486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0E6DD6-2341-4D1A-8F22-6F01A4BAE486}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

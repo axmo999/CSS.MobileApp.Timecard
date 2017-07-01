@@ -15,7 +15,7 @@
         <TextClock
             p1:layout_width="match_parent"
             p1:layout_height="0dp"
-            p1:layout_weight="5"
+            p1:layout_weight="4"
             p1:id="@+id/textClock1"
             p1:textStyle="bold"
             p1:textSize="100dp"
@@ -24,7 +24,15 @@
             p1:layout_width="match_parent"
             p1:layout_height="0dp"
             p1:layout_weight="7"
-            p1:id="@+id/calendarView1" />
+            p1:id="@+id/calendarView1"
+            p1:minWidth="25px"
+            p1:minHeight="25px" />
+        <Button
+            p1:text="設定"
+            p1:layout_width="match_parent"
+            p1:layout_height="0dp"
+            p1:layout_weight="1"
+            p1:id="@+id/buttonToConfig" />
     </LinearLayout>
     <LinearLayout
         p1:orientation="vertical"
@@ -44,7 +52,7 @@
             p1:layout_height="0dp"
             p1:layout_weight="3"
             p1:id="@+id/toggleAttendance"
-            p1:textSize="60dp"
+            p1:textSize="40dp"
             p1:textOff="退勤"
             p1:textOn="出勤" />
         <Button
