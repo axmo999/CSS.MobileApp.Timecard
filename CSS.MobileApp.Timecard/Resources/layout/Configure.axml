@@ -12,7 +12,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewIPAdress" />
+        android:id="@+id/textViewIPAdress"
+        android:autoText="true" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,9 +63,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextPassword" />
     <Space
-      android:layout_width="match_parent"
-      android:layout_height="20dp"
-      android:id="@+id/space1" />
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/space1" />
     <Button
         android:text="保存"
         android:layout_width="match_parent"
@@ -76,9 +77,9 @@
         android:layout_height="20dp"
         android:id="@+id/space1" />
     <Button
-      android:text="戻る"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/buttonMain"
-      android:textSize="20dp" />
+        android:text="戻る"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonMain"
+        android:textSize="20dp" />
 </LinearLayout>

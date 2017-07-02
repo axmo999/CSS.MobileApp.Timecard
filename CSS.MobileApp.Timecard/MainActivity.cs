@@ -7,7 +7,7 @@ using System;
 
 namespace CSS.MobileApp.Timecard
 {
-    [Activity(Label = "勤怠システム", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Label = "勤怠システム", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Landscape, Theme = "@android:style/Theme.NoTitleBar")]
     public class MainActivity : Activity
     {
         /// <summary>

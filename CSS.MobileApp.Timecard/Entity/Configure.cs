@@ -1,4 +1,4 @@
-﻿namespace CSS.MobileApp.Timecard.Utility
+﻿namespace CSS.MobileApp.Timecard.Entity
 {
     /// <summary>
     /// SMB設定用クラス

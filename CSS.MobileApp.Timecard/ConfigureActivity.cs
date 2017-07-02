@@ -32,11 +32,12 @@ namespace CSS.MobileApp.Timecard
 
             SetContentView(Resource.Layout.Configure);
 
+            // ボタン取得
             _Save = FindViewById<Button>(Resource.Id.buttonSave);
 
             _ToMain = FindViewById<Button>(Resource.Id.buttonMain);
 
-
+            // テキストエディット取得
             _EditIPAdress = FindViewById<EditText>(Resource.Id.editTextIPAdress);
 
             _EditFolderName = FindViewById<EditText>(Resource.Id.editTextFolderName);
@@ -56,7 +57,7 @@ namespace CSS.MobileApp.Timecard
             using (IsolatedStorageFileStream StrageFileStream = ConfigFile.OpenFile(_ConfigFileName, FileMode.Open))
             using (StreamReader reader = new StreamReader(StrageFileStream))
             {
-                var Config = JsonConvert.DeserializeObject<Utility.Configure>(reader.ReadToEnd());
+                var Config = JsonConvert.DeserializeObject<Entity.Configure>(reader.ReadToEnd());
                 _EditIPAdress.SetText(Config.UriAdress.ToString(), BufferType.Normal);
                 _EditFolderName.SetText(Config.FolderName.ToString(), BufferType.Normal);
                 _EditUser.SetText(Config.User.ToString(), BufferType.Normal);
@@ -84,7 +85,7 @@ namespace CSS.MobileApp.Timecard
 
         private void Save_onClick()
         {
-            var Config = JsonConvert.SerializeObject(new Utility.Configure()
+            var Config = JsonConvert.SerializeObject(new Entity.Configure()
             {
                 User = _EditUser.Text.ToString(),
                 Password = _EditPassword.Text.ToString(),
@@ -114,7 +115,7 @@ namespace CSS.MobileApp.Timecard
 
         private void CreateConfigFIle()
         {
-            var Config = JsonConvert.SerializeObject(new Utility.Configure()
+            var Config = JsonConvert.SerializeObject(new Entity.Configure()
             {
                 User = "",
                 Password = "",
