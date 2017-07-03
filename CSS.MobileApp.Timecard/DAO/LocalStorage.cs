@@ -13,8 +13,10 @@ namespace CSS.MobileApp.Timecard.DAO
         {
         }
 
-        public void Read()
+        public Entity.Configure Read()
         {
+            Entity.Configure EntityConfig = new Entity.Configure();
+
 			var ConfigFile = IsolatedStorageFile.GetUserStoreForApplication();
 
 			if (!IsolatedStorageFileExists(_ConfigFileName))
@@ -25,12 +27,26 @@ namespace CSS.MobileApp.Timecard.DAO
 			using (IsolatedStorageFileStream StrageFileStream = ConfigFile.OpenFile(_ConfigFileName, FileMode.Open))
 			using (StreamReader reader = new StreamReader(StrageFileStream))
 			{
-				var Config = JsonConvert.DeserializeObject<Entity.Configure>(reader.ReadToEnd());
-				_EditIPAdress.SetText(Config.UriAdress.ToString(), BufferType.Normal);
-				_EditFolderName.SetText(Config.FolderName.ToString(), BufferType.Normal);
-				_EditUser.SetText(Config.User.ToString(), BufferType.Normal);
-				_EditPassword.SetText(Config.Password.ToString(), BufferType.Normal);
+				var JsonConfig = JsonConvert.DeserializeObject<Entity.Configure>(reader.ReadToEnd());
+                EntityConfig.UriAdress = JsonConfig.UriAdress.ToString();
+                EntityConfig.FolderName = JsonConfig.FolderName.ToString();
+                EntityConfig.User = JsonConfig.User.ToString();
+                EntityConfig.Password = JsonConfig.Password.ToString();
 			}
+
+            return EntityConfig;
+        }
+
+        public void Write(Entity.Configure EntityConfig)
+        {
+            var Config = JsonConvert.SerializeObject(EntityConfig);
+
+            var ConfigFile = IsolatedStorageFile.GetUserStoreForApplication();
+            using (IsolatedStorageFileStream StrageFileStream = ConfigFile.CreateFile("config.json"))
+            using (StreamWriter writer = new StreamWriter(StrageFileStream))
+            {
+                writer.Write(Config);
+            }
         }
 
 		private bool IsolatedStorageFileExists(string Name)

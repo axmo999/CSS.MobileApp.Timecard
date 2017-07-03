@@ -29,7 +29,15 @@ namespace CSS.MobileApp.Timecard
         /// </summary>
         private ToggleButton _ToggleAttendance;
 
+        /// <summary>
+        /// 設定画面ボタンです。
+        /// </summary>
         private Button _ToConfig;
+
+        private DAO.LocalStorage _ConfigLocalStorage = new DAO.LocalStorage();
+        private Entity.Configure _EntityConfig;
+
+        DAO.CsvToUserList _UserList;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -44,13 +52,27 @@ namespace CSS.MobileApp.Timecard
             _ToggleAttendance = FindViewById<ToggleButton>(Resource.Id.toggleAttendance);
             _ToConfig = FindViewById<Button>(Resource.Id.buttonToConfig);
 
-            // ユーザーリスト取得インスタンスです。
-            DAO.CsvToUserList UserList = new DAO.CsvToUserList();
+            // コンフィグファイルを読み取ります。
+            _EntityConfig = _ConfigLocalStorage.Read();
 
-            // 取得したユーザーリストをユーザーセレクトボックスに設定します。
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, UserList.GetUserLists());
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            _SpinnerUserLists.Adapter = adapter;
+            // ユーザーリスト取得インスタンスです。
+            try
+            {
+                _UserList = new DAO.CsvToUserList(_EntityConfig);
+
+                // 取得したユーザーリストをユーザーセレクトボックスに設定します。
+                ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, _UserList.GetUserLists());
+                adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+                _SpinnerUserLists.Adapter = adapter;
+
+            }
+            catch(Exception e)
+            {
+                _TimeStamp.Enabled = false;
+                Toast.MakeText(this, "サーバー接続エラーが発生しました。\n エラー内容：" + e, ToastLength.Short).Show();
+            }
+
+
             
             // 打刻ボタンクリック時の挙動です。
             _TimeStamp.Click += delegate
@@ -80,16 +102,16 @@ namespace CSS.MobileApp.Timecard
         private void TimeStamp_onClick()
         {
             // ユーザーリスト取得インスタンスです。
-            DAO.CsvToUserList UserList = new DAO.CsvToUserList();
+            //DAO.CsvToUserList UserList = new DAO.CsvToUserList();
 
             // 名前をユーザーセレクトボックスから取得します。
             string Name = _SpinnerUserLists.SelectedItem.ToString();
 
             // 名前より社員Noを取得します。
-            string Id = UserList.GetUserId(Name);
+            string Id = _UserList.GetUserId(Name);
 
             // 出勤CSV書き込みインスタンスです。IDを設定します。
-            DAO.WriteTime WriteTime = new DAO.WriteTime(Id);
+            DAO.WriteTime WriteTime = new DAO.WriteTime(Id, _EntityConfig);
 
             // 出勤対ボタンの状態を取得します。
             string State = string.Empty;

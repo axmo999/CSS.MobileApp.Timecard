@@ -19,13 +19,18 @@ namespace CSS.MobileApp.Timecard.DAO
         /// コンストラクタです。
         /// 環境変数を設定します。
         /// </summary>
-        public CsvToUserList()
+        public CsvToUserList(Entity.Configure EntityConfig)
         {
             CSS.Library.Timecard.Entity.Config.Properties props = new CSS.Library.Timecard.Entity.Config.Properties();
-            props.User = "administrator";
-            props.Password = "chubu#201";
-            props.UriAdress = "192.168.250.200";
-            props.FolderName = "/share/test/";
+            //props.User = "administrator";
+            //props.Password = "chubu#201";
+            //props.UriAdress = "192.168.250.200";
+            //props.FolderName = "/share/test/";
+
+            props.User = EntityConfig.User;
+            props.Password = EntityConfig.Password;
+            props.UriAdress = EntityConfig.UriAdress;
+            props.FolderName = EntityConfig.FolderName;
 
             CsvToList csvList = new CsvToList();
 
@@ -34,7 +39,7 @@ namespace CSS.MobileApp.Timecard.DAO
         }
 
         /// <summary>
-        /// 名前リスト取得します。
+        /// 名前リストを取得します。
         /// </summary>
         /// <returns>名前リスト</returns>
         public List<String> GetUserLists()

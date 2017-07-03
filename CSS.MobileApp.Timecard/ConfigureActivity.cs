@@ -11,7 +11,7 @@ using static Android.Widget.TextView;
 
 namespace CSS.MobileApp.Timecard
 {
-    [Activity(Label = "勤怠システム 設定", ScreenOrientation = ScreenOrientation.Landscape)]
+    [Activity(Label = "勤怠システム 設定", Theme = "@android:style/Theme.NoTitleBar")]
     public class ConfigureActivity : Activity
     {
         private EditText _EditIPAdress;
@@ -22,10 +22,9 @@ namespace CSS.MobileApp.Timecard
         private Button _Save;
         private Button _ToMain;
 
-        private string _ConfigFileName = "config.json";
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
+
             base.OnCreate(savedInstanceState);
 
             // Create your application here
@@ -46,27 +45,38 @@ namespace CSS.MobileApp.Timecard
 
             _EditPassword = FindViewById<EditText>(Resource.Id.editTextPassword);
 
+            // ローカルストレージインスタンス作成
+            DAO.LocalStorage LocalStorage = new DAO.LocalStorage();
 
-            var ConfigFile = IsolatedStorageFile.GetUserStoreForApplication();
 
-            if (!IsolatedStorageFileExists(_ConfigFileName))
-            {
-                CreateConfigFIle();
-            }
+            // コンフィグファイル読み込み
+            Entity.Configure EntityConfig = new Entity.Configure();
+            EntityConfig = LocalStorage.Read();
 
-            using (IsolatedStorageFileStream StrageFileStream = ConfigFile.OpenFile(_ConfigFileName, FileMode.Open))
-            using (StreamReader reader = new StreamReader(StrageFileStream))
-            {
-                var Config = JsonConvert.DeserializeObject<Entity.Configure>(reader.ReadToEnd());
-                _EditIPAdress.SetText(Config.UriAdress.ToString(), BufferType.Normal);
-                _EditFolderName.SetText(Config.FolderName.ToString(), BufferType.Normal);
-                _EditUser.SetText(Config.User.ToString(), BufferType.Normal);
-                _EditPassword.SetText(Config.Password.ToString(), BufferType.Normal);
-            }
+            _EditIPAdress.SetText(EntityConfig.UriAdress.ToString(), BufferType.Normal);
+            _EditFolderName.SetText(EntityConfig.FolderName.ToString(), BufferType.Normal);
+            _EditUser.SetText(EntityConfig.User.ToString(), BufferType.Normal);
+            _EditPassword.SetText(EntityConfig.Password.ToString(), BufferType.Normal);
 
             _Save.Click += delegate
             {
-                Save_onClick();
+                //Save_onClick();
+
+                EntityConfig.User = _EditUser.Text.ToString();
+                EntityConfig.Password = _EditPassword.Text.ToString();
+                EntityConfig.UriAdress = _EditIPAdress.Text.ToString();
+                EntityConfig.FolderName = _EditFolderName.Text.ToString();
+
+                try
+                {
+                    LocalStorage.Write(EntityConfig);
+                    Toast.MakeText(this, "設定を保存しました。", ToastLength.Short).Show();
+                }catch(Exception e)
+                {
+                    Toast.MakeText(this, "エラーが発生しました。" + e , ToastLength.Short).Show();
+                }
+                
+
             };
 
             _ToMain.Click += delegate
@@ -79,57 +89,7 @@ namespace CSS.MobileApp.Timecard
         {
             var intent = new Intent(this, typeof(MainActivity));
             StartActivity(intent);
-
-            //throw new NotImplementedException();
         }
 
-        private void Save_onClick()
-        {
-            var Config = JsonConvert.SerializeObject(new Entity.Configure()
-            {
-                User = _EditUser.Text.ToString(),
-                Password = _EditPassword.Text.ToString(),
-                UriAdress = _EditIPAdress.Text.ToString(),
-                FolderName = _EditFolderName.Text.ToString()
-                
-            });
-
-            var ConfigFile = IsolatedStorageFile.GetUserStoreForApplication();
-            using (IsolatedStorageFileStream StrageFileStream = ConfigFile.CreateFile("config.json"))
-            using (StreamWriter writer = new StreamWriter(StrageFileStream))
-            {
-                writer.Write(Config);
-                Toast.MakeText(this, "設定を保存しました。", ToastLength.Short).Show();
-            }
-
-            //throw new NotImplementedException();
-        }
-
-        private bool IsolatedStorageFileExists(string Name)
-        {
-            using (var folder = IsolatedStorageFile.GetUserStoreForDomain())
-            {
-                return folder.FileExists(Name);
-            }
-        }
-
-        private void CreateConfigFIle()
-        {
-            var Config = JsonConvert.SerializeObject(new Entity.Configure()
-            {
-                User = "",
-                Password = "",
-                UriAdress = "",
-                FolderName = ""
-
-            });
-
-            var ConfigFile = IsolatedStorageFile.GetUserStoreForApplication();
-            using (IsolatedStorageFileStream StrageFileStream = ConfigFile.CreateFile("config.json"))
-            using (StreamWriter writer = new StreamWriter(StrageFileStream))
-            {
-                writer.Write(Config);
-            }
-        }
     }
 }
