@@ -28,11 +28,12 @@ namespace CSS.MobileApp.Timecard.DAO
 			using (StreamReader reader = new StreamReader(StrageFileStream))
 			{
 				var JsonConfig = JsonConvert.DeserializeObject<Entity.Configure>(reader.ReadToEnd());
-                EntityConfig.UriAdress = JsonConfig.UriAdress.ToString();
-                EntityConfig.FolderName = JsonConfig.FolderName.ToString();
-                EntityConfig.User = JsonConfig.User.ToString();
-                EntityConfig.Password = JsonConfig.Password.ToString();
-			}
+                EntityConfig.UriAdress = JsonConfig.UriAdress;
+                EntityConfig.FolderName = JsonConfig.FolderName;
+                EntityConfig.User = JsonConfig.User;
+                EntityConfig.Password = JsonConfig.Password;
+                EntityConfig.Domain = JsonConfig.Domain;
+            }
 
             return EntityConfig;
         }
@@ -59,14 +60,16 @@ namespace CSS.MobileApp.Timecard.DAO
 
 		private void CreateConfigFIle()
 		{
-			var Config = JsonConvert.SerializeObject(new Entity.Configure()
-			{
-				User = "",
-				Password = "",
-				UriAdress = "",
-				FolderName = ""
+            var Config = JsonConvert.SerializeObject(new Entity.Configure()
+            {
+                User = "",
+                Password = "",
+                UriAdress = "",
+                FolderName = "",
+                Domain = ""
 
-			});
+
+            });
 
 			var ConfigFile = IsolatedStorageFile.GetUserStoreForApplication();
 			using (IsolatedStorageFileStream StrageFileStream = ConfigFile.CreateFile("config.json"))

@@ -1949,17 +1949,20 @@ namespace CSS.MobileApp.Timecard
 			// aapt resource value: 0x7f06000e
 			public const int disableHome = 2131099662;
 			
-			// aapt resource value: 0x7f06006f
-			public const int editTextFolderName = 2131099759;
+			// aapt resource value: 0x7f060073
+			public const int editTextDomain = 2131099763;
+			
+			// aapt resource value: 0x7f06006d
+			public const int editTextFolderName = 2131099757;
 			
 			// aapt resource value: 0x7f06006b
 			public const int editTextIPAdress = 2131099755;
 			
-			// aapt resource value: 0x7f060073
-			public const int editTextPassword = 2131099763;
-			
 			// aapt resource value: 0x7f060071
-			public const int editTextUserName = 2131099761;
+			public const int editTextPassword = 2131099761;
+			
+			// aapt resource value: 0x7f06006f
+			public const int editTextUserName = 2131099759;
 			
 			// aapt resource value: 0x7f06005c
 			public const int edit_query = 2131099740;
@@ -1999,9 +2002,6 @@ namespace CSS.MobileApp.Timecard
 			
 			// aapt resource value: 0x7f060069
 			public const int gridLayout1 = 2131099753;
-			
-			// aapt resource value: 0x7f06006c
-			public const int gridView1 = 2131099756;
 			
 			// aapt resource value: 0x7f060005
 			public const int home = 2131099653;
@@ -2165,9 +2165,6 @@ namespace CSS.MobileApp.Timecard
 			// aapt resource value: 0x7f060027
 			public const int snap = 2131099687;
 			
-			// aapt resource value: 0x7f06006d
-			public const int space1 = 2131099757;
-			
 			// aapt resource value: 0x7f060045
 			public const int spacer = 2131099717;
 			
@@ -2210,17 +2207,20 @@ namespace CSS.MobileApp.Timecard
 			// aapt resource value: 0x7f06004d
 			public const int textSpacerNoButtons = 2131099725;
 			
-			// aapt resource value: 0x7f06006e
-			public const int textViewFolderName = 2131099758;
+			// aapt resource value: 0x7f060072
+			public const int textViewDomain = 2131099762;
+			
+			// aapt resource value: 0x7f06006c
+			public const int textViewFolderName = 2131099756;
 			
 			// aapt resource value: 0x7f06006a
 			public const int textViewIPAdress = 2131099754;
 			
-			// aapt resource value: 0x7f060072
-			public const int textViewPassword = 2131099762;
-			
 			// aapt resource value: 0x7f060070
-			public const int textViewUserName = 2131099760;
+			public const int textViewPassword = 2131099760;
+			
+			// aapt resource value: 0x7f06006e
+			public const int textViewUserName = 2131099758;
 			
 			// aapt resource value: 0x7f06008c
 			public const int time = 2131099788;

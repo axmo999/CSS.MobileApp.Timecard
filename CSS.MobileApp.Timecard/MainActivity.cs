@@ -69,7 +69,24 @@ namespace CSS.MobileApp.Timecard
             catch(Exception e)
             {
                 _TimeStamp.Enabled = false;
-                Toast.MakeText(this, "サーバー接続エラーが発生しました。\n エラー内容：" + e, ToastLength.Short).Show();
+
+                Utility.LocalIPAddress LocalIPAddress = new Utility.LocalIPAddress();
+
+                System.Collections.Generic.List<System.Net.IPAddress> localadr = LocalIPAddress.GetLocalIPAddress();
+                string localIP = localadr[0].ToString();
+                Toast.MakeText(this, localIP, ToastLength.Long).Show();
+                //Toast.MakeText(this, "サーバー接続エラーが発生しました。\n エラー内容：" + e, ToastLength.Long).Show();
+
+                var dlg = new AlertDialog.Builder(this);
+                dlg.SetTitle("エラー");
+                dlg.SetMessage("サーバー接続エラーが発生しました。\n エラー内容：" + e);
+
+                dlg.SetPositiveButton( //OKボタンの処理
+                        "OK", (s, a) => Toast.MakeText(this, "OK", ToastLength.Short).Show());
+                dlg.SetNegativeButton( //Cancelボタンの処理
+                    "Cancel", (s, a) => Toast.MakeText(this, "Cancel", ToastLength.Short).Show());
+                dlg.Create().Show();
+
             }
 
 
@@ -139,6 +156,7 @@ namespace CSS.MobileApp.Timecard
             finally
             {
                 Toast.MakeText(this, Name + "の" + State + "を打刻しました。", ToastLength.Short).Show();
+                WriteTime.Close();
                 WriteTime = null;
             }
         }

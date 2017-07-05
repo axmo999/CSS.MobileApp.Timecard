@@ -30,15 +30,12 @@ namespace CSS.MobileApp.Timecard.DAO
         {
             // 初期設定
             Config.Properties props = new Config.Properties();
-            //props.User = "administrator";
-            //props.Password = "chubu#201";
-            //props.UriAdress = "192.168.250.200";
-            //props.FolderName = "/share/test/";
 
             props.User = EntityConfig.User;
             props.Password = EntityConfig.Password;
             props.UriAdress = EntityConfig.UriAdress;
             props.FolderName = EntityConfig.FolderName;
+            props.Domain = EntityConfig.Domain;
 
             // ファイル名設定
             _FileName.Length = 0;
@@ -121,6 +118,11 @@ namespace CSS.MobileApp.Timecard.DAO
                     _CsvList.WriteCsv(txtWrite, Records);
                 }
             }
+        }
+
+        public void Close()
+        {
+            _SmbRecordFile = null;
         }
     }
 }

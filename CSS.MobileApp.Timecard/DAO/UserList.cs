@@ -22,20 +22,21 @@ namespace CSS.MobileApp.Timecard.DAO
         public CsvToUserList(Entity.Configure EntityConfig)
         {
             CSS.Library.Timecard.Entity.Config.Properties props = new CSS.Library.Timecard.Entity.Config.Properties();
-            //props.User = "administrator";
-            //props.Password = "chubu#201";
-            //props.UriAdress = "192.168.250.200";
-            //props.FolderName = "/share/test/";
 
             props.User = EntityConfig.User;
             props.Password = EntityConfig.Password;
             props.UriAdress = EntityConfig.UriAdress;
             props.FolderName = EntityConfig.FolderName;
+            props.Domain = EntityConfig.Domain;
 
             CsvToList csvList = new CsvToList();
 
             SharedFile smbUserList = new SharedFile(props);
-            _Users = csvList.Users(smbUserList.SmbReader("UserList.txt"));
+
+            if (smbUserList.SmbExists("UserList.txt"))
+            {
+                _Users = csvList.Users(smbUserList.SmbReader("UserList.txt"));
+            }
         }
 
         /// <summary>

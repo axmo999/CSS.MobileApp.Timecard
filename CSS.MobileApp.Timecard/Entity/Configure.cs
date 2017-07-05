@@ -24,5 +24,10 @@
         /// SMB共有フォルダ名
         /// </summary>
         public string FolderName { get; set; }
+
+        /// <summary>
+        /// SMBドメイン名
+        /// </summary>
+        public string Domain { get; set; }
     }
 }

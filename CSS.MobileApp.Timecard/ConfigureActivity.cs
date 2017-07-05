@@ -18,6 +18,7 @@ namespace CSS.MobileApp.Timecard
         private EditText _EditFolderName;
         private EditText _EditUser;
         private EditText _EditPassword;
+        private EditText _EditDomain;
 
         private Button _Save;
         private Button _ToMain;
@@ -45,6 +46,8 @@ namespace CSS.MobileApp.Timecard
 
             _EditPassword = FindViewById<EditText>(Resource.Id.editTextPassword);
 
+            _EditDomain = FindViewById<EditText>(Resource.Id.editTextDomain);
+
             // ローカルストレージインスタンス作成
             DAO.LocalStorage LocalStorage = new DAO.LocalStorage();
 
@@ -53,19 +56,21 @@ namespace CSS.MobileApp.Timecard
             Entity.Configure EntityConfig = new Entity.Configure();
             EntityConfig = LocalStorage.Read();
 
-            _EditIPAdress.SetText(EntityConfig.UriAdress.ToString(), BufferType.Normal);
-            _EditFolderName.SetText(EntityConfig.FolderName.ToString(), BufferType.Normal);
-            _EditUser.SetText(EntityConfig.User.ToString(), BufferType.Normal);
-            _EditPassword.SetText(EntityConfig.Password.ToString(), BufferType.Normal);
+            _EditIPAdress.SetText(EntityConfig.UriAdress, BufferType.Normal);
+            _EditFolderName.SetText(EntityConfig.FolderName, BufferType.Normal);
+            _EditUser.SetText(EntityConfig.User, BufferType.Normal);
+            _EditPassword.SetText(EntityConfig.Password, BufferType.Normal);
+            _EditDomain.SetText(EntityConfig.Domain, BufferType.Normal);
 
             _Save.Click += delegate
             {
                 //Save_onClick();
 
-                EntityConfig.User = _EditUser.Text.ToString();
-                EntityConfig.Password = _EditPassword.Text.ToString();
-                EntityConfig.UriAdress = _EditIPAdress.Text.ToString();
-                EntityConfig.FolderName = _EditFolderName.Text.ToString();
+                EntityConfig.User = _EditUser.Text;
+                EntityConfig.Password = _EditPassword.Text;
+                EntityConfig.UriAdress = _EditIPAdress.Text;
+                EntityConfig.FolderName = _EditFolderName.Text;
+                EntityConfig.Domain = _EditDomain.Text;
 
                 try
                 {
