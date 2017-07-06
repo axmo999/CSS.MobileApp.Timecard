@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
+using SharpCifs.Smb;
 using System;
 
 namespace CSS.MobileApp.Timecard
@@ -66,7 +67,7 @@ namespace CSS.MobileApp.Timecard
                 _SpinnerUserLists.Adapter = adapter;
 
             }
-            catch(Exception e)
+            catch(SmbException e)
             {
                 _TimeStamp.Enabled = false;
 
@@ -79,7 +80,7 @@ namespace CSS.MobileApp.Timecard
 
                 var dlg = new AlertDialog.Builder(this);
                 dlg.SetTitle("エラー");
-                dlg.SetMessage("サーバー接続エラーが発生しました。\n エラー内容：" + e);
+                dlg.SetMessage("サーバー接続エラーが発生しました。\n エラー内容：" + e.StackTrace.ToString());
 
                 dlg.SetPositiveButton( //OKボタンの処理
                         "OK", (s, a) => Toast.MakeText(this, "OK", ToastLength.Short).Show());
